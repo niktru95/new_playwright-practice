@@ -2,7 +2,7 @@ from playwright.sync_api import Playwright
 import pytest
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture()
 def set_up_tear_down(playwright: Playwright):
     browser = playwright.chromium.launch()
     context = browser.new_context()
