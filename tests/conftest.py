@@ -4,7 +4,7 @@ import pytest
 
 @pytest.fixture()
 def set_up_tear_down(playwright: Playwright):
-    browser = playwright.chromium.launch()
+    browser = playwright.chromium.launch(headless=False, slow_mo=1000)
     context = browser.new_context()
     page = context.new_page()
     # page.set_viewport_size({'width': 1080, 'height': 1920})

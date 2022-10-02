@@ -22,6 +22,7 @@ class CartPage:
         self.total_price = page.locator('//*[@id="checkout_summary_container"]/div/div[2]/div[7]')
         self.finish_btn = page.locator('data-test=finish')
         self.thk_for_order_message = page.locator('//*[@id="checkout_complete_container"]/h2')
+        self.message_error = page.locator('data-test=error')
 
     def login(self, username, password):
         self.username.fill(username)
@@ -34,6 +35,10 @@ class CartPage:
         self.shopping_cart_link.click()
         expect(self.cart_title).to_have_text('Your Cart')
         self.checkout.click()
+
+    def checkout_your_info_empty_fields(self):
+        self.continue_btn.click()
+        expect(self.message_error).to_have_text('Error: First Name is required')
 
     def checkout_your_information(self):
         self.first_name_field.fill('Nickolai')
